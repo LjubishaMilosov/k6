@@ -5,11 +5,11 @@ export const options = {
   stages:[
     {
       duration: '5m',
-      target: 100
+      target: 200
     },
     {
       duration: '30m',
-      target: 10
+      target: 200
     },
     {
       duration: '5m',
@@ -24,4 +24,4 @@ export default function () {
   sleep(2);
   http.get('https://test.k6.io/news.php');
   sleep(2);
-}
+}   
