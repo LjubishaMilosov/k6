@@ -5,25 +5,27 @@ import { check } from 'k6';
 
 export default function () {
 
-    const body = JSON.stringify({
+    const credentials = {
         username: 'test_' + Date.now(),
-        password: 'test'
-    });
+        password: 'secret_' + Date.now()
+    }
 
-    const params = {
+
+    http.post('https://test-api.k6.io/user/register/',
+    JSON.stringify(credentials),
+    {
         headers: {
             'Content-Type': 'application/json'
         }
-    };
-
-    http.post('https://test-api.k6.io/user/register/', body, params);
+    }
+    );
 
     let res = http.post(
         'https://test-api.k6.io/auth/token/login/',
         JSON.stringify(
             {
-                username: 'test_73725293736225',
-                password: 'test'
+                username: credentials.username,
+                password: credentials.password
             }
         ),
         {
