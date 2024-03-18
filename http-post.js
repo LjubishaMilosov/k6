@@ -37,4 +37,18 @@ export default function () {
 
     const accessToken = res.json().access;
     console.log(accessToken);
+
+
+    http.get(
+        'https://test-api.k6.io/my/crocodiles',
+        {headers: 
+            {
+            'Authorization': 'Bearer ' + accessToken,
+            'Content-Type': 'application/json'
+            }
+        }
+    );
 }
+
+
+//   k6 run --http-debug="full" http-post.js
